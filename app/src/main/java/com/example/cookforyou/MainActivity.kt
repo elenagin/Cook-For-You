@@ -7,6 +7,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cookforyou.ui.pantry.PantryAdapter
+import com.example.cookforyou.ui.pantry.PantryItem
+import kotlinx.android.synthetic.main.fragment_pantry.*
+import android.content.Context
+
 
 class MainActivity : AppCompatActivity() {
 

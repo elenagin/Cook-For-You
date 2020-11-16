@@ -11,9 +11,9 @@ import com.example.cookforyou.R
 
 class PantryFragment : Fragment() {
     private val pantryList = listOf(
-        PantryItem ("Apples", 5, "unit(s)"),
-        PantryItem ("Salt", 2, "Tablespoons"),
-        PantryItem ("Cinnamon", 1, "Bottle"),
+        PantryItem("Apples", 5, "unit(s)"),
+        PantryItem("Salt", 2, "Tablespoons"),
+        PantryItem("Cinnamon", 1, "Bottle"),
     )
 
     //private lateinit var pantryViewModel: PantryViewModel
@@ -25,7 +25,7 @@ class PantryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //pantryViewModel =
-            //ViewModelProviders.of(this).get(PantryViewModel::class.java)
+        //ViewModelProviders.of(this).get(PantryViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_pantry, container, false)
         rvPantryList = root.findViewById(R.id.rvPantryList) as RecyclerView
         rvPantryList.layoutManager = LinearLayoutManager(context)

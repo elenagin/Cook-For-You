@@ -6,4 +6,6 @@
     <string name="title_settings">Settings</string>
     <string name="card_food">Apples</string>
     <string name="card_amount">5</string>
+    <string name="button_to_add_item">Button to add item</string>
+    <string name="add_item_to_pantry">Add item to my pantry</string>
 </resources>

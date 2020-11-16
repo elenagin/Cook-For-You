@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
 
-class PantryAdapter(val pantryItem: List<PantryItem>) :
+class PantryAdapter(private val pantryItem: List<PantryItem>) :
     RecyclerView.Adapter<PantryAdapter.PantryHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PantryHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -19,7 +19,7 @@ class PantryAdapter(val pantryItem: List<PantryItem>) :
 
     override fun getItemCount(): Int = pantryItem.size
 
-    class PantryHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class PantryHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun render(pantryItem: PantryItem) {
 
         }

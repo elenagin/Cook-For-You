@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "198842769025",
+    "firebase_url": "https://cook-for-you-88190.firebaseio.com",
+    "project_id": "cook-for-you-88190",
+    "storage_bucket": "cook-for-you-88190.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198842769025:android:2796bc03c2ec65465df780",
+        "android_client_info": {
+          "package_name": "com.example.cookforyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198842769025-chm8o649dbff9j0ttr6jp3l66ocb2cru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrrgDc1eUmXH-lhjk65JNL3YOhZBwXukY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198842769025-chm8o649dbff9j0ttr6jp3l66ocb2cru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

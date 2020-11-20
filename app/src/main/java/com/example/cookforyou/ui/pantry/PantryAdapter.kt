@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+import java.util.ArrayList
 
-class PantryAdapter(private val pantryItem: List<PantryItem>) :
+class PantryAdapter(private val pantryItem: ArrayList<PantryItem>) :
     RecyclerView.Adapter<PantryAdapter.PantryHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PantryHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

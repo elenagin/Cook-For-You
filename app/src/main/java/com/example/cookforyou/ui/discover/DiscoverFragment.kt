@@ -17,7 +17,7 @@ class DiscoverFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        this.discoverViewModel = ViewModelProviders.of(this).get(DiscoverViewModel::class.java)
+        this.discoverViewModel = ViewModelProvider(this).get(DiscoverViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_discover, container, false)
         val textView: TextView = root.findViewById(R.id.text_discover)
         this.discoverViewModel.text.observe(this.viewLifecycleOwner, {

@@ -12,11 +12,11 @@ private const val TAG = "PantryViewModel"
  * Creates random items for view model
  */
 class PantryViewModel : ViewModel() {
-    var db = FirebaseFirestore.getInstance()
+    /*var db = FirebaseFirestore.getInstance()
     private val docRef = db.collection("pantries").document("0XYZS3PgeIW9Cw6hAvgx")
 
-    private val numb = getItemsFromFirebase()
-    val text: LiveData<String> = numb
+    private val textToReturn = getItemsFromFirebase()
+    val text: LiveData<String> = textToReturn
 
 
     private fun getItemsFromFirebase(): MutableLiveData<String> {
@@ -29,5 +29,5 @@ class PantryViewModel : ViewModel() {
                 }
             }
         }
-    }
+    }*/
 }

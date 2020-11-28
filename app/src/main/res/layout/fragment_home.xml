@@ -36,7 +36,7 @@
                 android:id="@+id/favouritesB"
                 android:layout_width="355dp"
                 android:layout_height="86dp"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="24dp"
                 android:text="@string/favourites"
                 app:layout_constraintBottom_toTopOf="@+id/myMealsTV"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,8 +71,8 @@
                 android:layout_width="116dp"
                 android:layout_height="86dp"
                 android:text="@string/breakfast"
-                app:layout_constraintBottom_toTopOf="@+id/discoverB"
-                app:layout_constraintEnd_toStartOf="@+id/LunchB"
+                app:layout_constraintBottom_toTopOf="@+id/randomB"
+                app:layout_constraintEnd_toStartOf="@+id/lunchB"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myMealsTV"
@@ -85,11 +85,11 @@
                 android:text="@string/dinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/LunchB"
-                app:layout_constraintTop_toTopOf="@+id/LunchB" />
+                app:layout_constraintStart_toEndOf="@+id/lunchB"
+                app:layout_constraintTop_toTopOf="@+id/lunchB" />
 
             <Button
-                android:id="@+id/LunchB"
+                android:id="@+id/lunchB"
                 android:layout_width="116dp"
                 android:layout_height="86dp"
                 android:text="@string/lunch"
@@ -99,7 +99,7 @@
                 app:layout_constraintTop_toTopOf="@+id/breakfastB" />
 
             <Button
-                android:id="@+id/discoverB"
+                android:id="@+id/randomB"
                 android:layout_width="226dp"
                 android:layout_height="69dp"
                 android:text="@string/random_recipe"

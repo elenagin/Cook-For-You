@@ -19,10 +19,10 @@ class DiscoverFragment : Fragment() {
     ): View? {
         this.discoverViewModel = ViewModelProvider(this).get(DiscoverViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_discover, container, false)
-        val textView: TextView = root.findViewById(R.id.text_discover)
+        /*val textView: TextView = root.findViewById(R.id.text_settings)
         this.discoverViewModel.text.observe(this.viewLifecycleOwner, {
             textView.text = it
-        })
+        })*/
         return root
     }
 }

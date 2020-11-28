@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 30
@@ -51,8 +52,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
+    //noinspection GradleDependency
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

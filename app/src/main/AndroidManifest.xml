@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:screenOrientation="portrait"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/circle_logo"
         android:label="@string/app_name"

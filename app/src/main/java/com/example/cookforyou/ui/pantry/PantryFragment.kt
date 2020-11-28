@@ -1,6 +1,8 @@
 package com.example.cookforyou.ui.pantry
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +10,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
 private const val TAG = "PantryFragment"
 
@@ -52,39 +58,70 @@ class PantryFragment : Fragment() {
             }
         }
     }
-
-}
-
-//val textView: TextView = root.findViewById(R.id.addItemButtonLabel)
-//val textViewRV: TextView = root.findViewById(R.id.label_name)
-/*adapter = PantryAdapter(pantryViewModel.text.observe(viewLifecycleOwner, {
-    textViewRV.text = it
-}))
-
-//Sets text values
-pantryViewModel.text.observe(viewLifecycleOwner, {
-    textView.text = it
-})*/
-
-
 /*
-*
-        val root = inflater.inflate(R.layout.fragment_pantry, container, false)
-        rvPantryList = root.findViewById(R.id.rvPantryList) as RecyclerView
-        rvPantryList.layoutManager = LinearLayoutManager(context)
-        val docRef = db.collection("pantries").document("0XYZS3PgeIW9Cw6hAvgx")
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                    val adapter = document.data?.let { PantryAdapter(it) }
-                    rvPantryList.adapter = adapter
-                } else {
-                    Log.d(TAG, "No such document")
+
+    /**
+     * Receives all touch & gesture actions from user and responds.
+     */
+    private fun configuraItemTouchHelper() {
+        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT
+        ) {
+
+            /**
+             * When users rearranges (moves), will override onMove and rearrange items from
+             * view as well as notify the view model.
+             */
+            override fun onMove(
+                recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val sourcePosition = viewHolder.adapterPosition
+                val targetPosition = target.adapterPosition
+                Collections.swap(tablaCosasViewModel.inventario, sourcePosition, targetPosition)
+                adapter?.notifyItemMoved(sourcePosition, targetPosition)
+                return true
+            }
+
+            /**
+             * When users swipes, will override onSwiped and remove item from view as well as
+             * update the view model.
+             */
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                if (direction == ItemTouchHelper.LEFT) {
+                    val dialogBuilder = AlertDialog.Builder(context)
+                    dialogBuilder.setMessage("Are you sure you want to delete this Thingy?")
+                        .setCancelable(false)
+                        .setPositiveButton(
+                            "Proceed"
+                        ) { dialog, _ ->
+                            dialog.run {
+                                tablaCosasViewModel.remove(viewHolder.adapterPosition)
+                                cosaRecyclerView.adapter?.notifyItemRemoved(viewHolder.adapterPosition)
+                                Log.d(TAG, "Deleted")
+                            }
+                        }
+                        .setNegativeButton(
+                            "Cancel"
+                        ) { dialog, _ ->
+                            dialog.run {
+                                cosaRecyclerView.adapter?.notifyItemChanged(viewHolder.adapterPosition)
+                                Log.d(TAG, "Cancelled")
+                            }
+                        }
+
+                    val alert = dialogBuilder.create()
+                    alert.setTitle("Delete Thingy?")
+                    alert.show()
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
-        return root
-* */
+        }
+
+        /**
+         * Detected gesture acts on Recycler View
+         */
+        val gestureDetector = ItemTouchHelper(itemTouchCallback)
+        gestureDetector.attachToRecyclerView(cosaRecyclerView)
+    }*/
+}

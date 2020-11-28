@@ -1,16 +1,13 @@
-package com.example.cookforyou.ui.home
+package com.example.cookforyou.ui.recipes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.navGraphViewModels
-import com.example.cookforyou.R
 
-class HomeViewModel : ViewModel() {
+class MyRecipesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is my recipes Fragment"
     }
-
     val text: LiveData<String> = _text
 }

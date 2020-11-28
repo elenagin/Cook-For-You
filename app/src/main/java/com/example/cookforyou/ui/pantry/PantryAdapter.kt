@@ -26,7 +26,6 @@ class PantryAdapter(var pantryList: List<PantryItem>) :
 
     class PantryHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun render(pantryList: PantryItem) {
-            Log.d("Huh", "BARASIN")
             itemView.label_name.text = pantryList.item
             itemView.label_amount.text = pantryList.amount.toString()
         }

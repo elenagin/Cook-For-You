@@ -3,9 +3,12 @@ package com.example.cookforyou.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.navGraphViewModels
-import com.example.cookforyou.R
 
+/**
+ * author: Elena Ginebra Z.
+ * date: 10 Nov 2020
+ * description: HomeViewModel view model for Home
+*/
 class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {

@@ -7,6 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
 import kotlinx.android.synthetic.main.pantry_card.view.*
 
+
+/**
+ * author: Elena Ginebra Z.
+ * date: 10 Nov 2020
+ * description: MyRecipesAdapter has holder for MyRecipesFragment, adapts database info for recyclerview
+ */
 class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
     RecyclerView.Adapter<MyRecipesAdapter.MyRecipesHolder>() {
 
@@ -21,7 +27,11 @@ class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
 
         override fun getItemCount(): Int = recipesList.size
 
-
+        /**
+         * author: Elena Ginebra Z.
+         * date: 10 Nov 2020
+         * description: MyRecipesHolder information holder for MyRecipesAdapter
+         * */
         class MyRecipesHolder(view: View) : RecyclerView.ViewHolder(view) {
             fun render(recipesList: MyRecipesItem) {
                 itemView.label_name.text = recipesList.name

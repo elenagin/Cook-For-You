@@ -12,6 +12,12 @@ import com.example.cookforyou.R
 
 private const val TAG = "RecipesFragment"
 
+
+/**
+ * author: Elena Ginebra Z.
+ * date: 10 Nov 2020
+ * description: MyRecipesFragment fragment for MyRecipesItem, loads database data
+ */
 class MyRecipesFragment : Fragment() {
     private lateinit var rvFirestoreList: RecyclerView
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
@@ -35,6 +41,11 @@ class MyRecipesFragment : Fragment() {
     }
 
 
+    /**
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: load Data from FirebaseRepo
+     */
     private fun loadData() {
         firebaseRepo.getRecipe().addOnCompleteListener {
             if (it.isSuccessful) {
@@ -43,7 +54,7 @@ class MyRecipesFragment : Fragment() {
                 adapter.recipesList = recipesList
                 adapter.notifyDataSetChanged()
             } else {
-                Log.d("ErrorPantryFragment", "Bloody Error")
+                Log.d(TAG, "Bloody Error")
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.example.cookforyou.ui.pantry
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,11 @@ import com.example.cookforyou.R
 import kotlinx.android.synthetic.main.pantry_card.view.*
 
 
+/**
+ * author: Elena Ginebra Z.
+ * date: 10 Nov 2020
+ * description: PantryAdapter has holder for PantryFragment, adapts database info for recyclerview
+ */
 class PantryAdapter(var pantryList: List<PantryItem>) :
     RecyclerView.Adapter<PantryAdapter.PantryHolder>() {
 
@@ -23,36 +27,16 @@ class PantryAdapter(var pantryList: List<PantryItem>) :
 
     override fun getItemCount(): Int = pantryList.size
 
-
+    /**
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: PantryHolder information holder for PantryAdapter
+     */
     class PantryHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun render(pantryList: PantryItem) {
             itemView.label_name.text = pantryList.item
             itemView.label_amount.text = pantryList.amount.toString()
+            itemView.label_unit.text = pantryList.unit
         }
     }
 }
-
-
-
-//view holders for all types of items
-/*class DescViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-    fun bind(pantryItem: PantryItem){
-
-    }
-}
-
-class ImageViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-    fun bind(pantryItem: PantryItem){
-
-    }
-}*/
-
-
-
-/*override fun getItemViewType(position: Int): Int {
-    return if (pantryList[position].post_type == 0L){
-        POST_TYPE_DESC
-    } else{
-        POST_TYPE_IMAGE
-    }
-}*/

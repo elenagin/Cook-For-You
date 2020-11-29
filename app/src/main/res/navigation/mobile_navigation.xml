@@ -32,6 +32,10 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/myRecipesFragment"
-        android:name="com.example.cookforyou.ui.recipes.MyRecipesFragment"
+        android:name="com.example.cookforyou.ui.myRecipes.MyRecipesFragment"
         android:label="MyRecipesFragment" />
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.example.cookforyou.ui.recipe.RecipeFragment"
+        android:label="RecipeFragment" />
 </navigation>

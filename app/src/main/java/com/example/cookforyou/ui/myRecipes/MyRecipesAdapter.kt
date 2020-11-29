@@ -1,8 +1,10 @@
-package com.example.cookforyou.ui.recipes
+package com.example.cookforyou.ui.myRecipes
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
 import kotlinx.android.synthetic.main.pantry_card.view.*
@@ -15,6 +17,8 @@ import kotlinx.android.synthetic.main.pantry_card.view.*
  */
 class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
     RecyclerView.Adapter<MyRecipesAdapter.MyRecipesHolder>() {
+
+
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRecipesHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
@@ -35,6 +39,9 @@ class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
         class MyRecipesHolder(view: View) : RecyclerView.ViewHolder(view) {
             fun render(recipesList: MyRecipesItem) {
                 itemView.label_name.text = recipesList.name
+                itemView.setOnClickListener(){
+                    itemView.findNavController().navigate(R.id.recipeFragment)
+                }
             }
         }
 }

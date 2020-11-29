@@ -1,11 +1,13 @@
-package com.example.cookforyou.ui.recipes
+package com.example.cookforyou.ui.myRecipes
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
@@ -23,6 +25,8 @@ class MyRecipesFragment : Fragment() {
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
     private var recipesList: List<MyRecipesItem> = ArrayList()
     private var adapter: MyRecipesAdapter = MyRecipesAdapter(recipesList)
+    private lateinit var card: CardView
+    private lateinit var root: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +36,6 @@ class MyRecipesFragment : Fragment() {
         val root = inflater.inflate(R.layout.list_of_recipes_recycler_view, container, false)
 
         loadData()
-
         rvFirestoreList = root.findViewById(R.id.list_of_recipes_rv) as RecyclerView
         rvFirestoreList.layoutManager = LinearLayoutManager(context)
         rvFirestoreList.adapter = adapter
@@ -54,8 +57,18 @@ class MyRecipesFragment : Fragment() {
                 adapter.recipesList = recipesList
                 adapter.notifyDataSetChanged()
             } else {
-                Log.d(TAG, "Bloody Error")
+                Log.d(TAG, "Error")
             }
         }
+    }
+
+
+    /**
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: called by buttons to navigate to different to MyRecipesFragment
+     */
+    private fun navigateToRecipesFragment() {
+        root.findNavController().navigate(R.id.myRecipesFragment)
     }
 }

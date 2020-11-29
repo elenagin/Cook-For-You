@@ -1,4 +1,4 @@
-package com.example.cookforyou.ui.recipes
+package com.example.cookforyou.ui.myRecipes
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore

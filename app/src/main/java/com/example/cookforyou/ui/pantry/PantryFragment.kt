@@ -53,7 +53,7 @@ class PantryFragment : Fragment() {
                 adapter.pantryList = pantryList
                 adapter.notifyDataSetChanged()
             } else {
-                Log.d(TAG, "Bloody Error")
+                Log.d(TAG, "Error")
             }
         }
     }

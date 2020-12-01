@@ -1,29 +1,31 @@
-package com.example.cookforyou.ui.discover
+package com.example.cookforyou.ui.myRecipes
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
-import kotlinx.android.synthetic.main.discover_grid_layout.view.*
+import kotlinx.android.synthetic.main.pantry_card.view.*
 
 
 /**
  * author: Elena Ginebra Z.
- * date: 01 Dec 2020
- * description: DiscoverAdapter has holder for DiscoverFragment, adapts database info for recyclerview
+ * date: 10 Nov 2020
+ * description: MyRecipesAdapter has holder for MyRecipesFragment, adapts database info for recyclerview
  */
-class DiscoverAdapter(var recipesList: List<RecipeItem>) :
-    RecyclerView.Adapter<DiscoverAdapter.DiscoverHolder>() {
+class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
+    RecyclerView.Adapter<MyRecipesAdapter.MyRecipesHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRecipesHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return DiscoverHolder(layoutInflater.inflate(R.layout.discover_grid_layout, parent, false))
+        return MyRecipesHolder(layoutInflater.inflate(R.layout.recipes_card, parent, false))
     }
 
-    override fun onBindViewHolder(holder: DiscoverHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyRecipesHolder, position: Int) {
         holder.render(recipesList[position])
     }
 
@@ -31,14 +33,15 @@ class DiscoverAdapter(var recipesList: List<RecipeItem>) :
 
     /**
      * author: Elena Ginebra Z.
-     * date: 01 Dec 2020
-     * description: Discover information holder for DiscoverAdapter
+     * date: 10 Nov 2020
+     * description: MyRecipesHolder information holder for MyRecipesAdapter
      * */
-    class DiscoverHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun render(recipesList: RecipeItem) {
-            itemView.gridImages.text = recipesList.name
+    class MyRecipesHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun render(recipesList: MyRecipesItem) {
+            itemView.label_name.text = recipesList.name
             itemView.setOnClickListener {
-                itemView.findNavController().navigate(R.id.recipeFragment)
+                val bundle = bundleOf("name" to recipesList.name)
+                itemView.findNavController().navigate(R.id.recipeFragment, bundle)
             }
         }
     }

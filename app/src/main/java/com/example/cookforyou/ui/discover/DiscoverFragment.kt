@@ -1,28 +1,31 @@
-package com.example.cookforyou.ui.discover
+package com.example.cookforyou.ui.myRecipes
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
-import com.example.cookforyou.ui.myRecipes.FirebaseRepo
+
+private const val TAG = "RecipesFragment"
 
 
 /**
  * author: Elena Ginebra Z.
  * date: 10 Nov 2020
- * description: DiscoverFragment fragment from Navigation bar works as a search recipes module
+ * description: MyRecipesFragment fragment for MyRecipesItem, loads database data
  */
-class DiscoverFragment : Fragment() {
-    private lateinit var rvImages: RecyclerView
+class MyRecipesFragment : Fragment() {
+    private lateinit var rvFirestoreList: RecyclerView
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
-    private var recipesList: List<RecipeItem> = ArrayList()
-    private var adapter: DiscoverAdapter = DiscoverAdapter(recipesList)
+    private var recipesList: List<MyRecipesItem> = ArrayList()
+    private var adapter: MyRecipesAdapter = MyRecipesAdapter(recipesList)
+    private lateinit var card: CardView
     private lateinit var root: View
 
     override fun onCreateView(
@@ -30,16 +33,12 @@ class DiscoverFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        root = inflater.inflate(R.layout.fragment_discover, container, false)
+        val root = inflater.inflate(R.layout.list_of_recipes_recycler_view, container, false)
 
         loadData()
-        rvImages = root.findViewById(R.id.rvImages) as RecyclerView
-        rvImages.layoutManager = GridLayoutManager(
-            context,
-            2
-        )
-        adapter = DiscoverAdapter(recipesList)
-        rvImages.adapter = adapter
+        rvFirestoreList = root.findViewById(R.id.list_of_recipes_rv) as RecyclerView
+        rvFirestoreList.layoutManager = LinearLayoutManager(context)
+        rvFirestoreList.adapter = adapter
 
         return root
     }
@@ -53,9 +52,10 @@ class DiscoverFragment : Fragment() {
     private fun loadData() {
         firebaseRepo.getRecipe().addOnCompleteListener {
             if (it.isSuccessful) {
-                recipesList = it.result!!.toObjects(RecipeItem::class.java)
+                recipesList = it.result!!.toObjects(MyRecipesItem::class.java)
                 Log.d("PantryFragment", recipesList.toString())
                 adapter.recipesList = recipesList
+                adapter.notifyDataSetChanged()
             } else {
                 Log.d(TAG, "Error")
             }

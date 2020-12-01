@@ -9,12 +9,12 @@
     <string name="button_to_add_item">Button to add item</string>
     <string name="add_item_to_pantry">Add item to my pantry</string>
     <string name="breakfast">Breakfast</string>
-    <string name="by_meals">By meals</string>
+    <string name="by_meals">My Recipe lists</string>
     <string name="lunch">Lunch</string>
     <string name="dinner">Dinner</string>
     <string name="random_recipe">Random recipe</string>
-    <string name="i_m_feeling_lucky">I\'m feeling lucky...</string>
-    <string name="favourites">Favourites</string>
+    <string name="i_m_feeling_lucky">I\'m feeling lucky…</string>
+    <string name="favourites">My Favourites</string>
     <string name="my_lists">My Lists</string>
     <string name="search_hint">search</string>
     <!-- TODO: Remove or change this placeholder text -->

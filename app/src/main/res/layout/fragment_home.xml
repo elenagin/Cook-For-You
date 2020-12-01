@@ -20,11 +20,13 @@
             tools:context=".ui.home.HomeFragment">
 
             <TextView
-                android:id="@+id/favouritesTV"
+                android:id="@+id/randomRecipeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/favourites"
+                android:text="@string/i_m_feeling_lucky"
+                android:textStyle="italic"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/myMealsTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -33,23 +35,27 @@
                 app:layout_constraintVertical_bias="0.131" />
 
             <Button
-                android:id="@+id/favouritesB"
-                android:layout_width="355dp"
-                android:layout_height="86dp"
-                android:layout_marginStart="24dp"
-                android:text="@string/favourites"
+                android:id="@+id/randomRecipeButton"
+                android:layout_width="158dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="128dp"
+                android:layout_marginBottom="48dp"
+                android:background="@color/lightPurple"
+                android:textColor="@color/white"
+                android:text="@string/random_recipe"
                 app:layout_constraintBottom_toTopOf="@+id/myMealsTV"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favouritesTV"
+                app:layout_constraintTop_toBottomOf="@+id/randomRecipeTV"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/favouritesTV2"
                 android:layout_width="wrap_content"
+                android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
-                android:text="@string/my_lists"
+                android:text="@string/title_home"
                 android:textSize="36sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -58,20 +64,25 @@
                 android:id="@+id/myMealsTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/by_meals"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/breakfastB"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favouritesB" />
+                app:layout_constraintTop_toBottomOf="@+id/favouritesButton" />
 
             <Button
                 android:id="@+id/breakfastB"
-                android:layout_width="116dp"
-                android:layout_height="86dp"
+                android:layout_width="114dp"
+                android:layout_height="46dp"
                 android:text="@string/breakfast"
-                app:layout_constraintBottom_toTopOf="@+id/randomB"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/favouritesButton"
                 app:layout_constraintEnd_toStartOf="@+id/lunchB"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,9 +91,11 @@
 
             <Button
                 android:id="@+id/dinnerB"
-                android:layout_width="116dp"
-                android:layout_height="86dp"
+                android:layout_width="123dp"
+                android:layout_height="46dp"
                 android:text="@string/dinner"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/lunchB"
@@ -90,32 +103,36 @@
 
             <Button
                 android:id="@+id/lunchB"
-                android:layout_width="116dp"
-                android:layout_height="86dp"
+                android:layout_width="118dp"
+                android:layout_height="46dp"
                 android:text="@string/lunch"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/dinnerB"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/breakfastB"
                 app:layout_constraintTop_toTopOf="@+id/breakfastB" />
 
             <Button
-                android:id="@+id/randomB"
-                android:layout_width="226dp"
-                android:layout_height="69dp"
-                android:text="@string/random_recipe"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/favouritesButton"
+                android:layout_width="187dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="108dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="@string/favourites"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/discoverTV"
-                app:layout_constraintVertical_bias="0.1" />
+                app:layout_constraintTop_toBottomOf="@+id/discoverTV" />
 
             <TextView
                 android:id="@+id/discoverTV"
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/i_m_feeling_lucky"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/favourites"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"

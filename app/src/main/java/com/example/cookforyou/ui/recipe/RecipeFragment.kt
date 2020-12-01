@@ -14,8 +14,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cookforyou.R
+import com.example.cookforyou.ui.discover.RecipeItem
+import com.example.cookforyou.ui.myRecipes.MyRecipesItem
 
-private const val TAG = "RecipesFragment"
+private const val TAG = "RecipeFragment"
 
 
 /**
@@ -60,7 +62,6 @@ class RecipeFragment : Fragment() {
 
 
         val name = arguments?.getString("name")
-        name?.let { Log.d("AAAAAAA", it) }
         getCurrentRecipeData(name.toString())
 
         return root
@@ -97,13 +98,13 @@ class RecipeFragment : Fragment() {
      * date: 10 Nov 2020
      * description: load Data from FirebaseRepo
      */
-    private fun getCurrentRecipeData(name: String) {
-        firebaseRepo.getCurrentRecipe(name).addOnCompleteListener {
+    private fun getCurrentRecipeData(Name: String) {
+        firebaseRepo.getCurrentRecipe(Name).addOnCompleteListener {
             if (it.isSuccessful) {
-                val recipe = it.result!!.toObject(Recipe::class.java)
-                Log.d(TAG, recipe.toString())
-                recipeName.text = recipe!!.name
-                amountIngredient1.text = recipe.amount_ingredient1.toString()
+                val recipe = it.result!!.toObjects(Recipe::class.java)
+                Log.d(TAG, recipe.type)
+                recipeName.text = recipe.find { it.name == Name }.toString()
+                /*amountIngredient1.text = recipe.amount_ingredient1.toString()
                 amountIngredient2.text = recipe.amount_ingredient2.toString()
                 amountIngredient3.text = recipe.amount_ingredient3.toString()
                 unitIngredient1.text = recipe.unit_ingredient1.toString()
@@ -113,7 +114,7 @@ class RecipeFragment : Fragment() {
                 ingredient2.text = recipe.ingredient2.toString()
                 ingredient3.text = recipe.ingredient3.toString()
                 description.text = recipe.description.toString()
-                DownloadImageFromInternet(image).execute(recipe.image_url.toString())
+                DownloadImageFromInternet(image).execute(recipe.image_url.toString())*/
             } else {
                 Log.d(TAG, "Error")
             }

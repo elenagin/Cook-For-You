@@ -31,11 +31,11 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         root = inflater.inflate(R.layout.fragment_home, container, false)
-        val favButton = root.findViewById<Button>(R.id.favouritesB)
+        val favButton = root.findViewById<Button>(R.id.favouritesButton)
         val breakfastButton = root.findViewById<Button>(R.id.breakfastB)
         val lunchButton = root.findViewById<Button>(R.id.lunchB)
         val dinnerButton = root.findViewById<Button>(R.id.dinnerB)
-        val randomButton = root.findViewById<Button>(R.id.randomB)
+        val randomButton = root.findViewById<Button>(R.id.favouritesButton)
 
         favButton.setOnClickListener {
             navigateToRecipesFragment()
@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
         }
 
         randomButton.setOnClickListener {
-            navigateToRecipesFragment()
+            root.findNavController().navigate(R.id.recipeFragment)
         }
 
         return root

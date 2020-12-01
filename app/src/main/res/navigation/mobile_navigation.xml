@@ -8,7 +8,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.cookforyou.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_myRecipesFragment"
             app:destination="@id/myRecipesFragment" />
@@ -33,18 +33,18 @@
     <fragment
         android:id="@+id/myRecipesFragment"
         android:name="com.example.cookforyou.ui.myRecipes.MyRecipesFragment"
-        android:label="MyRecipesFragment" >
+        android:label="Recipes">
         <argument
             android:name="recipeName"
-            app:argType="string"
-            android:defaultValue="None" />
+            android:defaultValue="None"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.example.cookforyou.ui.recipe.RecipeFragment"
-        android:label="RecipeFragment" />
+        android:label="Recipe" />
     <fragment
         android:id="@+id/addPantryItemFragment"
         android:name="com.example.cookforyou.ui.settings.AddPantryItemFragment"
-        android:label="AddPantryItemFragment" />
+        android:label="Add new item" />
 </navigation>

@@ -1,7 +1,6 @@
-package com.example.cookforyou.ui.recipe
+package com.example.cookforyou.ui.discover
 
 import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
@@ -18,22 +17,10 @@ class FirebaseRepo {
      * date: 10 Nov 2020
      * description: getRecipe gets recipes from database
      */
-    fun getRecipes(): Task<QuerySnapshot>{
+    fun getRecipe(): Task<QuerySnapshot>{
         return firebaseFirestore
             .collection("recipes")
             .orderBy("name")
-            .get()
-    }
-
-    /**
-     * author: Elena Ginebra Z.
-     * date: 10 Nov 2020
-     * description: getCurrentRecipe gets current recipe from database
-     */
-    fun getCurrentRecipe(name: String): Task<QuerySnapshot> {
-        return firebaseFirestore
-            .collection("recipes")
-            .whereEqualTo("name", name)
             .get()
     }
 }

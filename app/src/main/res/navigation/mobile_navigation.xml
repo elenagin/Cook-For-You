@@ -33,7 +33,12 @@
     <fragment
         android:id="@+id/myRecipesFragment"
         android:name="com.example.cookforyou.ui.myRecipes.MyRecipesFragment"
-        android:label="MyRecipesFragment" />
+        android:label="MyRecipesFragment" >
+        <argument
+            android:name="recipeName"
+            app:argType="string"
+            android:defaultValue="None" />
+    </fragment>
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.example.cookforyou.ui.recipe.RecipeFragment"

@@ -13,9 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
-import com.example.cookforyou.ui.myRecipes.MyRecipesItem
 
 private const val TAG = "RecipesFragment"
 
@@ -46,7 +44,6 @@ class RecipeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root = inflater.inflate(R.layout.recipe_layout, container, false)
         recipeName = root.findViewById(R.id.label_recipe_name)
         amountIngredient1 = root.findViewById(R.id.label_amount_ingredient1)
@@ -62,8 +59,9 @@ class RecipeFragment : Fragment() {
         image = root.findViewById(R.id.recipe_imageView)
 
 
-        getCurrentRecipeData("kO3cfYe431MrhFEapVfe")
-
+        val name = arguments?.getString("name")
+        name?.let { Log.d("AAAAAAA", it) }
+        getCurrentRecipeData(name.toString())
 
         return root
     }

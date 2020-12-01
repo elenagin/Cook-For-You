@@ -34,17 +34,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/label_amount_ingredient3" />
 
-                <TextView
-                    android:id="@+id/label_description"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/description"
-                    android:textSize="14sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="32dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.073"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/label_preparation" />
+                    app:layout_constraintTop_toBottomOf="@+id/label_preparation">
+
+                    <TextView
+                        android:id="@+id/label_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/description"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.073"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_preparation" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/label_ingredient2"

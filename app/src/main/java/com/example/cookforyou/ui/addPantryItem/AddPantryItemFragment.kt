@@ -26,11 +26,6 @@ class AddPantryItemFragment : Fragment() {
     ): View? {
         addPantryItemViewModel =
             ViewModelProvider(this).get(AddPantryItemViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_settings, container, false)
-        val textView: TextView = root.findViewById(R.id.text_settings)
-        addPantryItemViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.add_pantry_item, container, false)
     }
 }

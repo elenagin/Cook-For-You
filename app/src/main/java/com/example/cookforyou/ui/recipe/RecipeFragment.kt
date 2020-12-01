@@ -10,10 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+import com.example.cookforyou.ui.myRecipes.MyRecipesItem
 
 private const val TAG = "RecipesFragment"
 
@@ -25,43 +27,67 @@ private const val TAG = "RecipesFragment"
  */
 @Suppress("DEPRECATION")
 class RecipeFragment : Fragment() {
-    private lateinit var rvFirestoreList: RecyclerView
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
-    private var recipesList: List<Recipe> = ArrayList()
-    private var adapter: RecipeAdapter = RecipeAdapter(recipesList)
-    private lateinit var root: View
+    private lateinit var recipeName: TextView
+    private lateinit var amountIngredient1: TextView
+    private lateinit var unitIngredient1: TextView
+    private lateinit var ingredient1: TextView
+    private lateinit var amountIngredient2: TextView
+    private lateinit var unitIngredient2: TextView
+    private lateinit var ingredient2: TextView
+    private lateinit var amountIngredient3: TextView
+    private lateinit var unitIngredient3: TextView
+    private lateinit var ingredient3: TextView
+    private lateinit var description: TextView
+    private lateinit var image: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        loadData()
+
         val root = inflater.inflate(R.layout.recipe_layout, container, false)
-        //val textView: TextView = root.findViewById(R.id.text_settings)
-        //var title = "KotlinApp"
-        DownloadImageFromInternet(root.findViewById(R.id.recipe_imageView)).execute("https://images.unsplash.com/photo-1535332371349-a5d229f49cb5?ixlib=rb-1.2.1&w=1000&q=80")
+        recipeName = root.findViewById(R.id.label_recipe_name)
+        amountIngredient1 = root.findViewById(R.id.label_amount_ingredient1)
+        unitIngredient1 = root.findViewById(R.id.label_unit_ingredient1)
+        ingredient1 = root.findViewById(R.id.label_ingredient1)
+        amountIngredient2 = root.findViewById(R.id.label_amount_ingredient2)
+        unitIngredient2 = root.findViewById(R.id.label_unit_ingredient2)
+        ingredient2 = root.findViewById(R.id.label_ingredient2)
+        amountIngredient3 = root.findViewById(R.id.label_amount_ingredient3)
+        unitIngredient3 = root.findViewById(R.id.label_unit_ingredient3)
+        ingredient3 = root.findViewById(R.id.label_ingredient3)
+        description = root.findViewById(R.id.label_description)
+        image = root.findViewById(R.id.recipe_imageView)
+
+
+        getCurrentRecipeData("kO3cfYe431MrhFEapVfe")
+
+
         return root
     }
 
     @SuppressLint("StaticFieldLeak")
-    private inner class DownloadImageFromInternet(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
+    private inner class DownloadImageFromInternet(var imageView: ImageView) :
+        AsyncTask<String, Void, Bitmap?>() {
         init {
-            Toast.makeText(context, "Please wait, it may take a few minute...",     Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Loading image...", Toast.LENGTH_SHORT).show()
         }
+
         override fun doInBackground(vararg urls: String): Bitmap? {
             val imageURL = urls[0]
             var image: Bitmap? = null
             try {
                 val `in` = java.net.URL(imageURL).openStream()
                 image = BitmapFactory.decodeStream(`in`)
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.e("Error Message", e.message.toString())
                 e.printStackTrace()
             }
             return image
         }
+
         override fun onPostExecute(result: Bitmap?) {
             imageView.setImageBitmap(result)
         }
@@ -73,13 +99,23 @@ class RecipeFragment : Fragment() {
      * date: 10 Nov 2020
      * description: load Data from FirebaseRepo
      */
-    private fun loadData() {
-        firebaseRepo.getRecipe().addOnCompleteListener {
+    private fun getCurrentRecipeData(name: String) {
+        firebaseRepo.getCurrentRecipe(name).addOnCompleteListener {
             if (it.isSuccessful) {
-                recipesList = it.result!!.toObjects(Recipe::class.java)
-                Log.d(TAG, recipesList.toString())
-                adapter.recipesList = recipesList
-                adapter.notifyDataSetChanged()
+                val recipe = it.result!!.toObject(Recipe::class.java)
+                Log.d(TAG, recipe.toString())
+                recipeName.text = recipe!!.name
+                amountIngredient1.text = recipe.amount_ingredient1.toString()
+                amountIngredient2.text = recipe.amount_ingredient2.toString()
+                amountIngredient3.text = recipe.amount_ingredient3.toString()
+                unitIngredient1.text = recipe.unit_ingredient1.toString()
+                unitIngredient2.text = recipe.unit_ingredient2.toString()
+                unitIngredient3.text = recipe.unit_ingredient3.toString()
+                ingredient1.text = recipe.ingredient1.toString()
+                ingredient2.text = recipe.ingredient2.toString()
+                ingredient3.text = recipe.ingredient3.toString()
+                description.text = recipe.description.toString()
+                DownloadImageFromInternet(image).execute(recipe.image_url.toString())
             } else {
                 Log.d(TAG, "Error")
             }

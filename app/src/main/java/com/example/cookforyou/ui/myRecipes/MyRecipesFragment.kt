@@ -53,22 +53,12 @@ class MyRecipesFragment : Fragment() {
         firebaseRepo.getRecipe().addOnCompleteListener {
             if (it.isSuccessful) {
                 recipesList = it.result!!.toObjects(MyRecipesItem::class.java)
-                Log.d("ErrorPantryFragment", recipesList.toString())
+                Log.d("PantryFragment", recipesList.toString())
                 adapter.recipesList = recipesList
                 adapter.notifyDataSetChanged()
             } else {
                 Log.d(TAG, "Error")
             }
         }
-    }
-
-
-    /**
-     * author: Elena Ginebra Z.
-     * date: 10 Nov 2020
-     * description: called by buttons to navigate to different to MyRecipesFragment
-     */
-    private fun navigateToRecipesFragment() {
-        root.findNavController().navigate(R.id.myRecipesFragment)
     }
 }

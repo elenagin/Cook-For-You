@@ -3,8 +3,10 @@ package com.example.cookforyou.ui.recipe
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+import com.example.cookforyou.ui.myRecipes.MyRecipesItem
 import kotlinx.android.synthetic.main.pantry_card.view.*
 import kotlinx.android.synthetic.main.recipe_layout.view.*
 
@@ -41,4 +43,6 @@ class RecipeAdapter(var recipesList: List<Recipe>) :
                 itemView.label_amount_ingredient3.text = recipesList.ingredient3
             }
         }
+
+
 }

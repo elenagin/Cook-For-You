@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModel
  * date: 10 Nov 2020
  * description: SettingsViewModel view model for Settings
  */
-class SettingsViewModel : ViewModel() {
+class AddPantryItemViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "User settings here"
+        value = "Add Pantry Item"
     }
     val text: LiveData<String> = _text
 

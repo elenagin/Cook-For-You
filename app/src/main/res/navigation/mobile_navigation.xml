@@ -38,4 +38,8 @@
         android:id="@+id/recipeFragment"
         android:name="com.example.cookforyou.ui.recipe.RecipeFragment"
         android:label="RecipeFragment" />
+    <fragment
+        android:id="@+id/addPantryItemFragment"
+        android:name="com.example.cookforyou.ui.settings.AddPantryItemFragment"
+        android:label="AddPantryItemFragment" />
 </navigation>

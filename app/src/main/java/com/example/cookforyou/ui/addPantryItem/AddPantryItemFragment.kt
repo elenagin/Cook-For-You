@@ -15,7 +15,7 @@ import com.example.cookforyou.R
  * date: 10 Nov 2020
  * description: SettingsFragment fragment from Navigation bar
  */
-class SettingsFragment : Fragment() {
+class AddPantryItemFragment : Fragment() {
 
     private lateinit var addPantryItemViewModel: AddPantryItemViewModel
 

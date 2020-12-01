@@ -5,7 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
@@ -22,6 +25,8 @@ class PantryFragment : Fragment() {
     private lateinit var rvFirestoreList: RecyclerView
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
     private var pantryList: List<PantryItem> = ArrayList()
+    private lateinit var addButton: ImageButton
+    private lateinit var addButtonCardView: CardView
     private var adapter: PantryAdapter = PantryAdapter(pantryList)
 
     override fun onCreateView(
@@ -30,7 +35,15 @@ class PantryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_pantry, container, false)
+        addButton = root.findViewById(R.id.addItemButton)
+        addButtonCardView = root.findViewById(R.id.cardAddItemPantry)
+        addButton.setOnClickListener {
+            findNavController().navigate(R.id.addPantryItemFragment)
+        }
 
+        addButtonCardView.setOnClickListener{
+            findNavController().navigate(R.id.addPantryItemFragment)
+        }
         loadData()
 
         rvFirestoreList = root.findViewById(R.id.rvPantryList) as RecyclerView

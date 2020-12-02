@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true"
-    android:scrollbars="vertical"
-    tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:fillViewport="true"
+        android:paddingRight="2dp"
+        android:paddingBottom="2dp"
+        android:scrollbars="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/label_preparation"
@@ -61,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="192dp"
+                android:layout_marginEnd="124dp"
                 android:text="@string/ingredient"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -84,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="280dp"
-                android:layout_marginEnd="192dp"
+                android:layout_marginEnd="124dp"
                 android:text="@string/ingredient"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -96,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="192dp"
+                android:layout_marginEnd="128dp"
                 android:text="@string/ingredient"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -197,6 +201,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/recipe_imageView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-</ScrollView>
 
+    </ScrollView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></View>
+
+</LinearLayout>

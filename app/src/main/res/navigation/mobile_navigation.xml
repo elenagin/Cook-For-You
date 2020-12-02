@@ -15,12 +15,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_discover"
-        android:name="com.example.cookforyou.ui.discover.DiscoverFragment"
-        android:label="@string/title_discover"
-        tools:layout="@layout/fragment_discover" />
-
-    <fragment
         android:id="@+id/navigation_pantry"
         android:name="com.example.cookforyou.ui.pantry.PantryFragment"
         android:label="@string/title_pantry"
@@ -44,7 +38,11 @@
         android:name="com.example.cookforyou.ui.recipe.RecipeFragment"
         android:label="Recipe" />
     <fragment
+        android:id="@+id/navigation_discover"
+        android:name="com.example.cookforyou.ui.discover.DiscoverFragment"
+        android:label="Discover" />
+    <fragment
         android:id="@+id/addPantryItemFragment"
-        android:name="com.example.cookforyou.ui.settings.AddPantryItemFragment"
-        android:label="Add new item" />
+        android:name="com.example.cookforyou.ui.addPantryItem.AddPantryItemFragment"
+        android:label="New Pantry Item" />
 </navigation>

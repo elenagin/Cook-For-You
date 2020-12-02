@@ -1,9 +1,9 @@
 package com.example.cookforyou.ui.pantry
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
 import kotlinx.android.synthetic.main.pantry_card.view.*
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.pantry_card.view.*
  * date: 10 Nov 2020
  * description: PantryAdapter has holder for PantryFragment, adapts database info for recyclerview
  */
-class PantryAdapter(var pantryList: List<PantryItem>) :
+class PantryAdapter(var pantryList: MutableList<PantryItem>) :
     RecyclerView.Adapter<PantryAdapter.PantryHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PantryHolder {
@@ -27,6 +27,12 @@ class PantryAdapter(var pantryList: List<PantryItem>) :
     }
 
     override fun getItemCount(): Int = pantryList.size
+
+    fun deletePantryItem(pos: Int) {
+        removeFromDatabase(pantryList[pos])
+        pantryList.removeAt(pos)
+        notifyItemRemoved(pos)
+    }
 
     /**
      * author: Elena Ginebra Z.
@@ -42,71 +48,40 @@ class PantryAdapter(var pantryList: List<PantryItem>) :
     }
 
     /**
-     * Receives all touch & gesture actions from user and responds.
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: Get document ID from FirebaseRepo
      */
-    /*private fun configuraItemTouchHelper() {
-        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT
-        ) {
+    /*private fun getDocumentID(pantryItem: PantryItem): String {
+        val firebaseRepo = FirebaseRepo()
+        firebaseRepo.getPantryItem().addOnCompleteListener {
+            if (it.isSuccessful) {
+                pantryList = it.result!!.toObjects(PantryItem::class.java)
 
-            /**
-             * When users rearranges (moves), will override onMove and rearrange items from
-             * view as well as notify the view model.
-             */
-            override fun onMove(
-                recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                val sourcePosition = viewHolder.adapterPosition
-                val targetPosition = target.adapterPosition
-                Collections.swap(tablaCosasViewModel.inventario, sourcePosition, targetPosition)
-                adapter?.notifyItemMoved(sourcePosition, targetPosition)
-                return true
-            }
-
-            /**
-             * When users swipes, will override onSwiped and remove item from view as well as
-             * update the view model.
-             */
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                if (direction == ItemTouchHelper.LEFT) {
-                    val dialogBuilder = AlertDialog.Builder(context)
-                    dialogBuilder.setMessage("Are you sure you want to delete this Thingy?")
-                        .setCancelable(false)
-                        .setPositiveButton(
-                            "Proceed"
-                        ) { dialog, _ ->
-                            dialog.run {
-                                tablaCosasViewModel.remove(viewHolder.adapterPosition)
-                                val rutaParaArchivo =
-                                    context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-                                File(rutaParaArchivo, "${this}.jpg").delete()
-                                Log.d(TAG, rutaParaArchivo.toString())
-                                cosaRecyclerView.adapter?.notifyItemRemoved(viewHolder.adapterPosition)
-                                Log.d(TAG, "Deleted")
-                            }
-                        }
-                        .setNegativeButton(
-                            "Cancel"
-                        ) { dialog, _ ->
-                            dialog.run {
-                                cosaRecyclerView.adapter?.notifyItemChanged(viewHolder.adapterPosition)
-                                Log.d(TAG, "Cancelled")
-                            }
-                        }
-
-                    val alert = dialogBuilder.create()
-                    alert.setTitle("Delete Thingy?")
-                    alert.show()
-                }
+                return@addOnCompleteListener
+            } else {
+                Log.d("PantryAdapter", "Error")
             }
         }
-
-        /**
-         * Detected gesture acts on Recycler View
-         */
-        val gestureDetector = ItemTouchHelper(itemTouchCallback)
-        gestureDetector.attachToRecyclerView(cosaRecyclerView)
     }*/
+
+    /**
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: load Data from FirebaseRepo
+     */
+    private fun removeFromDatabase(pantryItem: PantryItem) {
+        val firebaseRepo = FirebaseRepo()
+        firebaseRepo.getPantryItem(pantryItem.item!!).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val querySnapshot = it.result
+                val document = querySnapshot?.documents?.firstOrNull() ?: return@addOnCompleteListener //return
+                firebaseRepo.deletePantryItem(document.id)
+            } else {
+                Log.d("PantryAdapter", "Error")
+            }
+        }
+    }
 }
+
+//rmove from database primero, e doy patry item

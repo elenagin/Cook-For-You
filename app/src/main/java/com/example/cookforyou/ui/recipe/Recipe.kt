@@ -3,9 +3,10 @@ package com.example.cookforyou.ui.recipe
 /**
  * author: Elena Ginebra Z.
  * date: 10 Nov 2020
- * description: Data Class MyRecipesItem for database data
+ * description: Data Class RecipeItem for database data
  */
 data class Recipe (
+    var id: Int=0,
     var name: String? = "",
     var description: String? = "",
     val image_url: String? = "",

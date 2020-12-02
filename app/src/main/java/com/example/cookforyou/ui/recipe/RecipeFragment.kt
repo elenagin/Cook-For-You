@@ -14,8 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cookforyou.R
-import com.example.cookforyou.ui.discover.RecipeItem
-import com.example.cookforyou.ui.myRecipes.MyRecipesItem
 
 private const val TAG = "RecipeFragment"
 
@@ -63,6 +61,7 @@ class RecipeFragment : Fragment() {
 
         val name = arguments?.getString("name")
         getCurrentRecipeData(name.toString())
+        DownloadImageFromInternet(image)
 
         return root
     }
@@ -102,19 +101,22 @@ class RecipeFragment : Fragment() {
         firebaseRepo.getCurrentRecipe(Name).addOnCompleteListener {
             if (it.isSuccessful) {
                 val recipe = it.result!!.toObjects(Recipe::class.java)
-                Log.d(TAG, recipe.type)
-                recipeName.text = recipe.find { it.name == Name }.toString()
-                /*amountIngredient1.text = recipe.amount_ingredient1.toString()
-                amountIngredient2.text = recipe.amount_ingredient2.toString()
-                amountIngredient3.text = recipe.amount_ingredient3.toString()
-                unitIngredient1.text = recipe.unit_ingredient1.toString()
-                unitIngredient2.text = recipe.unit_ingredient2.toString()
-                unitIngredient3.text = recipe.unit_ingredient3.toString()
-                ingredient1.text = recipe.ingredient1.toString()
-                ingredient2.text = recipe.ingredient2.toString()
-                ingredient3.text = recipe.ingredient3.toString()
-                description.text = recipe.description.toString()
-                DownloadImageFromInternet(image).execute(recipe.image_url.toString())*/
+                Log.d(TAG, recipe.toString())
+                recipeName.text = recipe.find { it.name == Name }?.name.toString()
+                amountIngredient1.text =
+                    recipe.find { it.name == Name }?.amount_ingredient1.toString()
+                amountIngredient2.text =
+                    recipe.find { it.name == Name }?.amount_ingredient2.toString()
+                amountIngredient3.text =
+                    recipe.find { it.name == Name }?.amount_ingredient3.toString()
+                unitIngredient1.text = recipe.find { it.name == Name }?.unit_ingredient1.toString()
+                unitIngredient2.text = recipe.find { it.name == Name }?.unit_ingredient2.toString()
+                unitIngredient3.text = recipe.find { it.name == Name }?.unit_ingredient3.toString()
+                ingredient1.text = recipe.find { it.name == Name }?.ingredient1.toString()
+                ingredient2.text = recipe.find { it.name == Name }?.ingredient2.toString()
+                ingredient3.text = recipe.find { it.name == Name }?.ingredient3.toString()
+                description.text = recipe.find { it.name == Name }?.description.toString()
+                DownloadImageFromInternet(image).execute(recipe.find { it.name == Name }?.image_url.toString())
             } else {
                 Log.d(TAG, "Error")
             }

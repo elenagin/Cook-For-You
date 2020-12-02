@@ -1,8 +1,12 @@
 package com.example.cookforyou.ui.settings
 
+import android.widget.Button
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.example.cookforyou.R
 
 /**
  * author: Elena Ginebra Z.
@@ -10,11 +14,5 @@ import androidx.lifecycle.ViewModel
  * description: SettingsViewModel view model for Settings
  */
 class AddPantryItemViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "Add Pantry Item"
-    }
-    val text: LiveData<String> = _text
-
 
 }

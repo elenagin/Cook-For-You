@@ -1,14 +1,17 @@
 package com.example.cookforyou.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.cookforyou.R
+import com.example.cookforyou.ui.recipe.Recipe
 
 
 /**
@@ -16,11 +19,14 @@ import com.example.cookforyou.R
  * date: 10 Nov 2020
  * description: HomeFragment is the Home fragment, connected to Home View Graph,
  * sets button listeners for Home view
-*/
+ */
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var root: View
+    private var name: String = ""
+    private val firebaseRepo: FirebaseRepo = FirebaseRepo()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +41,7 @@ class HomeFragment : Fragment() {
         val breakfastButton = root.findViewById<Button>(R.id.breakfastB)
         val lunchButton = root.findViewById<Button>(R.id.lunchB)
         val dinnerButton = root.findViewById<Button>(R.id.dinnerB)
-        val randomButton = root.findViewById<Button>(R.id.favouritesButton)
+        val randomButton = root.findViewById<Button>(R.id.randomRecipeButton)
 
         favButton.setOnClickListener {
             navigateToRecipesFragment()
@@ -54,6 +60,9 @@ class HomeFragment : Fragment() {
         }
 
         randomButton.setOnClickListener {
+            val randomNumber = arrayOf(0, 1, 3, 4, 5, 6, 7)
+            getRandomName(randomNumber.random())
+            val bundle = bundleOf("name" to name)
             root.findNavController().navigate(R.id.recipeFragment)
         }
 
@@ -61,11 +70,29 @@ class HomeFragment : Fragment() {
     }
 
     /**
-    * author: Elena Ginebra Z.
-    * date: 10 Nov 2020
-    * description: called by buttons to navigate to different to MyRecipesFragment
-    */
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: called by buttons to navigate to different to MyRecipesFragment
+     */
     private fun navigateToRecipesFragment() {
         root.findNavController().navigate(R.id.myRecipesFragment)
+    }
+
+
+    /**
+     * author: Elena Ginebra Z.
+     * date: 10 Nov 2020
+     * description: load Data from FirebaseRepo
+     */
+    private fun getRandomName(rand: Int) {
+        firebaseRepo.getName(rand).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val recipe = it.result!!.toObjects(Recipe::class.java)
+                name = recipe.find { it.id == rand }?.name.toString()
+            } else {
+                Log.d("TAG", "Error")
+                name = ""
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.cookforyou.ui.pantry
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -17,10 +18,23 @@ class FirebaseRepo {
      * date: 10 Nov 2020
      * description: getPantryItem gets pantry items from database
      */
-    fun getPantryItem(): Task<QuerySnapshot>{
+    fun getPantryItem(item: String): Task<QuerySnapshot>{
         return firebaseFirestore
             .collection("pantries")
-            .orderBy("item")
+            .whereEqualTo("item", item)
             .get()
+    }
+
+    fun getPantryItems(): Task<QuerySnapshot>{
+        return firebaseFirestore
+            .collection("pantries")
+            .get()
+    }
+
+    fun deletePantryItem(itemID: String): Task<Void> {
+        return firebaseFirestore
+            .collection("pantries")
+            .document(itemID)
+            .delete()
     }
 }

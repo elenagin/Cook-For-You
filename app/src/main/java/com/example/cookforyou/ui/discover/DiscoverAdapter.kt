@@ -1,31 +1,34 @@
-package com.example.cookforyou.ui.myRecipes
+package com.example.cookforyou.ui.discover
 
+import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
-import kotlinx.android.synthetic.main.pantry_card.view.*
+import kotlinx.android.synthetic.main.discover_card.view.*
 
 
 /**
  * author: Elena Ginebra Z.
  * date: 10 Nov 2020
- * description: MyRecipesAdapter has holder for MyRecipesFragment, adapts database info for recyclerview
+ * description: DiscoverAdapter has holder for DiscoverFragment, adapts database info for recyclerview
  */
-class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
-    RecyclerView.Adapter<MyRecipesAdapter.MyRecipesHolder>() {
+class DiscoverAdapter(private var recipesList: MutableList<DiscoverItem>) :
+    RecyclerView.Adapter<DiscoverAdapter.DiscoverHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRecipesHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return MyRecipesHolder(layoutInflater.inflate(R.layout.recipes_card, parent, false))
+        return DiscoverHolder(layoutInflater.inflate(R.layout.discover_card, parent, false))
     }
 
-    override fun onBindViewHolder(holder: MyRecipesHolder, position: Int) {
+    override fun onBindViewHolder(holder: DiscoverHolder, position: Int) {
         holder.render(recipesList[position])
     }
 
@@ -33,16 +36,41 @@ class MyRecipesAdapter(var recipesList: List<MyRecipesItem>) :
 
     /**
      * author: Elena Ginebra Z.
-     * date: 10 Nov 2020
-     * description: MyRecipesHolder information holder for MyRecipesAdapter
+     * date: 01 Dec 2020
+     * description: DiscoverHolder information holder for DiscoverAdapter
      * */
-    class MyRecipesHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun render(recipesList: MyRecipesItem) {
-            itemView.label_name.text = recipesList.name
-            itemView.setOnClickListener {
-                val bundle = bundleOf("name" to recipesList.name)
-                itemView.findNavController().navigate(R.id.recipeFragment, bundle)
+    class DiscoverHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun render(recipesList: DiscoverItem) {
+            itemView.discoverName.text = recipesList.name
+            Log.d("recipe name", recipesList.name.toString())
+            DownloadImageFromInternet(itemView.discoverImage).execute(recipesList.image_url.toString())
+        }
+    }
+
+    fun updateDataSet(newDataSet: MutableList<DiscoverItem>){
+        recipesList = newDataSet
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    class DownloadImageFromInternet(var imageView: ImageView) :
+        AsyncTask<String, Void, Bitmap?>() {
+        override fun doInBackground(vararg urls: String): Bitmap? {
+            val imageURL = urls[0]
+            var image: Bitmap? = null
+            try {
+                val `in` = java.net.URL(imageURL).openStream()
+                image = BitmapFactory.decodeStream(`in`)
+            } catch (e: Exception) {
+                Log.e("Error Message", e.message.toString())
+                e.printStackTrace()
             }
+            Log.d("imageURL", imageURL)
+            return image
+        }
+
+        override fun onPostExecute(result: Bitmap?) {
+            imageView.setImageBitmap(result)
         }
     }
 }

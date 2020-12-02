@@ -16,16 +16,11 @@ import com.example.cookforyou.R
  */
 class SettingsFragment : Fragment() {
 
-    private lateinit var addPantryItemViewModel: AddPantryItemViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        addPantryItemViewModel =
-            ViewModelProvider(this).get(AddPantryItemViewModel::class.java)
-
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 }

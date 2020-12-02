@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
@@ -24,7 +25,7 @@ private const val TAG = "PantryFragment"
 class PantryFragment : Fragment() {
     private lateinit var rvFirestoreList: RecyclerView
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
-    private var pantryList: List<PantryItem> = ArrayList()
+    private var pantryList: MutableList<PantryItem> = mutableListOf()
     private lateinit var addButton: ImageButton
     private lateinit var addButtonCardView: CardView
     private var adapter: PantryAdapter = PantryAdapter(pantryList)
@@ -50,6 +51,9 @@ class PantryFragment : Fragment() {
         rvFirestoreList.layoutManager = LinearLayoutManager(context)
         rvFirestoreList.adapter = adapter
 
+        val itemTouchHelper = ItemTouchHelper(SwipeToDelete(adapter))
+        itemTouchHelper.attachToRecyclerView(rvFirestoreList)
+
         return root
     }
 
@@ -60,7 +64,7 @@ class PantryFragment : Fragment() {
      * description: load Data from FirebaseRepo
      */
     private fun loadData() {
-        firebaseRepo.getPantryItem().addOnCompleteListener {
+        firebaseRepo.getPantryItems().addOnCompleteListener {
             if (it.isSuccessful) {
                 pantryList = it.result!!.toObjects(PantryItem::class.java)
                 adapter.pantryList = pantryList

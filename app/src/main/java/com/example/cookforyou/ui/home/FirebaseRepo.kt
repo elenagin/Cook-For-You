@@ -1,12 +1,13 @@
-package com.example.cookforyou.ui.discover
+package com.example.cookforyou.ui.home
 
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
 /**
  * author: Elena Ginebra Z.
- * date: 01 Dec 2020
+ * date: 10 Nov 2020
  * description: FirebaseRepo stores database methods for retrieving recipes information
  */
 class FirebaseRepo {
@@ -17,10 +18,10 @@ class FirebaseRepo {
      * date: 10 Nov 2020
      * description: getRecipe gets recipes from database
      */
-    fun getRecipe(): Task<QuerySnapshot>{
+    fun getName(id: Int): Task<QuerySnapshot> {
         return firebaseFirestore
             .collection("recipes")
-            .orderBy("name")
+            .whereEqualTo("id", id)
             .get()
     }
 }

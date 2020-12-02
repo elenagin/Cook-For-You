@@ -1,8 +1,8 @@
-package com.example.cookforyou.ui.discover
+package com.example.cookforyou.ui.addPantryItem
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import java.util.*
 
 /**
  * author: Elena Ginebra Z.
@@ -14,13 +14,15 @@ class FirebaseRepo {
 
     /**
      * author: Elena Ginebra Z.
-     * date: 10 Nov 2020
-     * description: getRecipe gets recipes from database
+     * date: 01 Dec 2020
+     * description: addToPantry adds pantry items to database
      */
-    fun getRecipe(): Task<QuerySnapshot>{
+    fun addToPantry(item: PantryItem): Task<Void> {
+        val randomID: String = UUID.randomUUID().toString().substring(0, 19)
         return firebaseFirestore
-            .collection("recipes")
-            .orderBy("name")
-            .get()
+            .collection("pantries")
+            .document(randomID)
+            .set(item)
+            .addOnSuccessListener{}
     }
 }

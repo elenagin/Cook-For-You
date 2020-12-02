@@ -14,7 +14,8 @@
     <string name="dinner">Dinner</string>
     <string name="random_recipe">Random recipe</string>
     <string name="i_m_feeling_lucky">I\'m feeling lucky…</string>
-    <string name="favourites">My Favourites</string>
+    <string name="list">List</string>
+    <string name="favourites">Favourites</string>
     <string name="my_lists">My Lists</string>
     <string name="search_hint">search</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -29,4 +30,14 @@
     <string name="ingredients">Ingredients</string>
     <string name="photo_of_recipe">Photo of recipe</string>
     <string name="logo">Logo</string>
+    <string name="recipe_image">recipe image</string>
+    <string name="my_favourites_title">My favourites</string>
+    <string name="insert_unit">Insert unit</string>
+    <string name="item_label">Item:</string>
+    <string name="insert_item">Insert item</string>
+    <string name="insert_amount">Insert amount</string>
+    <string name="unit_label">Unit:</string>
+    <string name="amount_label">Amount:</string>
+    <string name="add_item">Add item</string>
+    <string name="Zero">0</string>
 </resources>

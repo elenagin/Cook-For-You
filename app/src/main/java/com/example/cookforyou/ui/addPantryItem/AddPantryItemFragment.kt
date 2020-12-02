@@ -57,32 +57,33 @@ class AddPantryItemFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 Log.d("AddPantryItemFragment", "onTextChanged")
-                item = if (itemEditText.text.toString() == "") {
-                    itemEditText.text.toString()
-                } else {
-                    " "
-                }
-                unit = if (unitEditText.text.toString() == "") {
-                    unitEditText.text.toString()
-                } else {
-                    " "
-                }
-                amount = if (amountEditText.text.toString() == "") {
-                    amountEditText.text.toString().toInt()
-                } else {
-                    0
+                if (s != null) {
+                    if (s.isEmpty()) {
+                        item = ""
+                        amount = 0
+                        unit = ""
+                    } else {
+                        item = if (itemEditText.text.toString() == "") {
+                            itemEditText.text.toString()
+                        } else {
+                            " "
+                        }
+                        unit = if (unitEditText.text.toString() == "") {
+                            unitEditText.text.toString()
+                        } else {
+                            " "
+                        }
+                        amount = if (amountEditText.text.toString() == "") {
+                            amountEditText.text.toString().toInt()
+                        } else {
+                            0
+                        }
+                    }
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
                 Log.d("AddPantryItemFragment", "afterTextChanged")
-                /*item = if (itemEditText.text.toString() == "") {
-                    itemEditText.text.toString()
-                } else {
-                    " "
-                }*/
-                //amount = amountEditText.text.toString().toInt()
-                //unit = unitEditText.text.toString()
             }
         }
 

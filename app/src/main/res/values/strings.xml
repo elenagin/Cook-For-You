@@ -40,4 +40,5 @@
     <string name="amount_label">Amount:</string>
     <string name="add_item">Add item</string>
     <string name="Zero">0</string>
+    <string name="discover_based_on_your_pantry">Based on your Pantry</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.cookforyou.R
 
 /**
@@ -63,21 +64,9 @@ class AddPantryItemFragment : Fragment() {
                         amount = 0
                         unit = ""
                     } else {
-                        item = if (itemEditText.text.toString() == "") {
-                            itemEditText.text.toString()
-                        } else {
-                            " "
-                        }
-                        unit = if (unitEditText.text.toString() == "") {
-                            unitEditText.text.toString()
-                        } else {
-                            " "
-                        }
-                        amount = if (amountEditText.text.toString() == "") {
-                            amountEditText.text.toString().toInt()
-                        } else {
-                            0
-                        }
+                        item = itemEditText.text.toString()
+                        unit = unitEditText.text.toString()
+                        amount = amountEditText.text.toString().toInt()
                     }
                 }
             }
@@ -101,6 +90,7 @@ class AddPantryItemFragment : Fragment() {
             amount = amountEditText.text.toString().toInt()
             unit = unitEditText.text.toString()
             addDataToDatabase(items)
+            findNavController().navigate(R.id.navigation_pantry)
         }
 
         return root

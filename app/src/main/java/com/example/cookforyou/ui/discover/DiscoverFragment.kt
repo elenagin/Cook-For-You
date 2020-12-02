@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+
 
 private const val TAG = "DiscoverFragment"
 
@@ -34,12 +35,17 @@ class DiscoverFragment : Fragment() {
 
         loadData()
         rvFirestoreList = root.findViewById(R.id.rvDiscoverImages) as RecyclerView
-        rvFirestoreList.layoutManager = LinearLayoutManager(context)
-        rvFirestoreList.adapter = adapter
+        //rvFirestoreList.layoutManager = LinearLayoutManager(context)
+        //rvFirestoreList.adapter = adapter
 
+        rvFirestoreList.setLayoutManager(GridLayoutManager(context, 2))
+        rvFirestoreList.adapter = adapter
         return root
     }
 
+    /*fun onItemClick(view: View?, position: Int) {
+        Log.d(TAG, "Clicked on a recipe")
+    }*/
 
     /**
      * author: Elena Ginebra Z.

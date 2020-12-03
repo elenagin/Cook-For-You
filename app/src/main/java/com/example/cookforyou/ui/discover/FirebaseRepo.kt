@@ -15,12 +15,26 @@ class FirebaseRepo {
     /**
      * author: Elena Ginebra Z.
      * date: 10 Nov 2020
-     * description: getRecipe gets recipes from database
+     * description: getRecipes gets recipes from database
      */
-    fun getRecipe(): Task<QuerySnapshot>{
+    fun getIngredientOneRecipes(): Task<QuerySnapshot>{
         return firebaseFirestore
             .collection("recipes")
-            .orderBy("name")
+            .whereIn("ingredient1", listOf("Toast", "Blueberries", "Banana", "Salmon", "Egg", "Chili sauce", "Sugar", "Fresh scallions"))
+            .get()
+    }
+
+    fun getIngredientTwoRecipes(): Task<QuerySnapshot>{
+        return firebaseFirestore
+            .collection("recipes")
+            .whereIn("ingredient2", listOf("Toast", "Blueberries", "Banana", "Salmon", "Egg", "Chili sauce", "Sugar", "Fresh scallions"))
+            .get()
+    }
+
+    fun getIngredientThreeRecipes(): Task<QuerySnapshot>{
+        return firebaseFirestore
+            .collection("recipes")
+            .whereIn("ingredient3", listOf("Toast", "Blueberries", "Banana", "Salmon", "Egg", "Chili sauce", "Sugar", "Fresh scallions"))
             .get()
     }
 }

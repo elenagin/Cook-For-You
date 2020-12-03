@@ -7,7 +7,7 @@ import com.google.firebase.firestore.QuerySnapshot
 
 /**
  * author: Elena Ginebra Z.
- * date: 10 Nov 2020
+ * date: 28 Nov 2020
  * description: FirebaseRepo stores database methods for retrieving recipes information
  */
 class FirebaseRepo {
@@ -15,8 +15,8 @@ class FirebaseRepo {
 
     /**
      * author: Elena Ginebra Z.
-     * date: 10 Nov 2020
-     * description: getRecipe gets recipes from database
+     * date: 28 Nov 2020
+     * description: getRandomRecipeName gets recipes from database
      */
     fun getRandomRecipeName(id: Int): Task<QuerySnapshot> {
         return firebaseFirestore

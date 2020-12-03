@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+import com.google.android.gms.tasks.Continuation
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.discover_card.view.*
 
 
@@ -29,10 +31,11 @@ class DiscoverFragment : Fragment() {
     private lateinit var rvFirestoreList: RecyclerView
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
     private var recipesList: MutableList<DiscoverItem> = ArrayList()
+    private var recipesList1: MutableList<DiscoverItem> = ArrayList()
+    private var recipesList2: MutableList<DiscoverItem> = ArrayList()
+    private var recipesList3: MutableList<DiscoverItem> = ArrayList()
     private var adapter: DiscoverAdapter = DiscoverAdapter(recipesList)
     private lateinit var root: View
-    //private lateinit var card: View
-    //private lateinit var imageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +49,7 @@ class DiscoverFragment : Fragment() {
 
 
         loadData()
+
         rvFirestoreList = root.findViewById(R.id.rvDiscoverImages) as RecyclerView
         rvFirestoreList.layoutManager = GridLayoutManager(context, 2)
         rvFirestoreList.adapter = adapter
@@ -54,12 +58,12 @@ class DiscoverFragment : Fragment() {
             val bundle = bundleOf("name" to title)
             findNavController().navigate(R.id.recipeFragment, bundle)
         }*/
+
+        //Log.d(TAG, (recipesList1 union recipesList2 union recipesList3).toString())
+        //var recipesList = recipesList1 union recipesList2 union recipesList3
+        //adapter.updateDataSet(recipesList.toList().toMutableList())
         return root
     }
-
-    /*fun onItemClick(view: View?, position: Int) {
-        Log.d(TAG, "Clicked on a recipe")
-    }*/
 
     /**
      * author: Elena Ginebra Z.
@@ -67,11 +71,27 @@ class DiscoverFragment : Fragment() {
      * description: load Data from FirebaseRepo
      */
     private fun loadData() {
-        firebaseRepo.getRecipe().addOnCompleteListener {
-            if (it.isSuccessful) {
-                recipesList = it.result!!.toObjects(DiscoverItem::class.java)
-                Log.d("DiscoverFragment", recipesList.toString())
-                adapter.updateDataSet(recipesList)
+        firebaseRepo.getIngredientOneRecipes().addOnCompleteListener { r1 ->
+            if (r1.isSuccessful) {
+                recipesList1 = r1.result!!.toObjects(DiscoverItem::class.java)
+                firebaseRepo.getIngredientTwoRecipes().addOnCompleteListener { r2 ->
+                    if (r2.isSuccessful) {
+                        recipesList2 = r2.result!!.toObjects(DiscoverItem::class.java)
+                        firebaseRepo.getIngredientThreeRecipes().addOnCompleteListener { r3 ->
+                            if (r3.isSuccessful) {
+                                recipesList3 = r3.result!!.toObjects(DiscoverItem::class.java)
+                                recipesList =
+                                    (recipesList1 union recipesList2 union recipesList3).toList()
+                                        .toMutableList()
+                                adapter.updateDataSet(recipesList)
+                            } else {
+                                Log.d(TAG, "Error")
+                            }
+                        }
+                    } else {
+                        Log.d(TAG, "Error")
+                    }
+                }
             } else {
                 Log.d(TAG, "Error")
             }

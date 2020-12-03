@@ -10,7 +10,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.cookforyou.R
+import com.example.cookforyou.ui.discover.DiscoverItem
 import com.example.cookforyou.ui.recipe.Recipe
 
 
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var root: View
     private var name: String = ""
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
+    private var recipe: MutableList<RecipeItem> = ArrayList()
 
 
     override fun onCreateView(
@@ -62,8 +65,7 @@ class HomeFragment : Fragment() {
         randomButton.setOnClickListener {
             val randomNumber = arrayOf(0, 1, 3, 4, 5, 6, 7)
             getRandomName(randomNumber.random())
-            val bundle = bundleOf("name" to name)
-            root.findNavController().navigate(R.id.recipeFragment)
+            Log.d("Random", recipe.size.toString())
         }
 
         return root
@@ -85,13 +87,14 @@ class HomeFragment : Fragment() {
      * description: load Data from FirebaseRepo
      */
     private fun getRandomName(rand: Int) {
-        firebaseRepo.getName(rand).addOnCompleteListener {
+        firebaseRepo.getRandomRecipeName(rand).addOnCompleteListener {
             if (it.isSuccessful) {
-                val recipe = it.result!!.toObjects(Recipe::class.java)
+                recipe = it.result!!.toObjects(RecipeItem::class.java)
                 name = recipe.find { it.id == rand }?.name.toString()
+                val bundle = bundleOf("name" to name)
+                findNavController().navigate(R.id.recipeFragment, bundle)
             } else {
                 Log.d("TAG", "Error")
-                name = ""
             }
         }
     }

@@ -6,10 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
+import kotlinx.android.synthetic.main.discover_card.view.*
 
 
 private const val TAG = "DiscoverFragment"
@@ -25,21 +30,30 @@ class DiscoverFragment : Fragment() {
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
     private var recipesList: MutableList<DiscoverItem> = ArrayList()
     private var adapter: DiscoverAdapter = DiscoverAdapter(recipesList)
+    private lateinit var root: View
+    //private lateinit var card: View
+    //private lateinit var imageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_discover, container, false)
+        root = inflater.inflate(R.layout.fragment_discover, container, false)
+        //card = inflater.inflate(R.layout.discover_card, container, false)
+        //val imageButton = card.findViewById(R.id.discoverImage)
+        //val title = card.findViewById(R.id.discoverName)
+
 
         loadData()
         rvFirestoreList = root.findViewById(R.id.rvDiscoverImages) as RecyclerView
-        //rvFirestoreList.layoutManager = LinearLayoutManager(context)
-        //rvFirestoreList.adapter = adapter
-
-        rvFirestoreList.setLayoutManager(GridLayoutManager(context, 2))
+        rvFirestoreList.layoutManager = GridLayoutManager(context, 2)
         rvFirestoreList.adapter = adapter
+
+        /*imageView.setOnClickListener{
+            val bundle = bundleOf("name" to title)
+            findNavController().navigate(R.id.recipeFragment, bundle)
+        }*/
         return root
     }
 

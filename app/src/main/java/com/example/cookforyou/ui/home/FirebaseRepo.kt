@@ -18,7 +18,7 @@ class FirebaseRepo {
      * date: 10 Nov 2020
      * description: getRecipe gets recipes from database
      */
-    fun getName(id: Int): Task<QuerySnapshot> {
+    fun getRandomRecipeName(id: Int): Task<QuerySnapshot> {
         return firebaseFirestore
             .collection("recipes")
             .whereEqualTo("id", id)

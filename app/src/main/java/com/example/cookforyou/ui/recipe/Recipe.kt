@@ -20,6 +20,3 @@ data class Recipe (
     val unit_ingredient2: String? = "",
     val unit_ingredient3: String? = "",
 )
-
-
-//from recipe show anthing in the list

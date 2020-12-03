@@ -52,8 +52,13 @@ class DiscoverAdapter(private var recipesList: MutableList<DiscoverItem>) :
         notifyDataSetChanged()
     }
 
+    /**
+     * author: Elena Ginebra Z.
+     * date: 30 Nov 2020
+     * description: DownloadImageFromInternet downloads image from url String parameter and shows on screen
+     */
     @SuppressLint("StaticFieldLeak")
-    class DownloadImageFromInternet(var imageView: ImageView) :
+    class DownloadImageFromInternet(private var imageView: ImageView) :
         AsyncTask<String, Void, Bitmap?>() {
         override fun doInBackground(vararg urls: String): Bitmap? {
             val imageURL = urls[0]

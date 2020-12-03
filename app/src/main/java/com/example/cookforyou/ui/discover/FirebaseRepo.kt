@@ -17,24 +17,31 @@ class FirebaseRepo {
      * date: 10 Nov 2020
      * description: getRecipes gets recipes from database
      */
-    fun getIngredientOneRecipes(): Task<QuerySnapshot>{
+    fun getIngredientOneRecipes(tempArray: List<String?>): Task<QuerySnapshot>{
         return firebaseFirestore
             .collection("recipes")
-            .whereIn("ingredient1", listOf("Toast", "Blueberries", "Banana", "Salmon", "Egg", "Chili sauce", "Sugar", "Fresh scallions"))
+            .whereIn("ingredient1", tempArray.toList())
             .get()
     }
 
-    fun getIngredientTwoRecipes(): Task<QuerySnapshot>{
+    fun getIngredientTwoRecipes(tempArray: List<String?>): Task<QuerySnapshot>{
         return firebaseFirestore
             .collection("recipes")
-            .whereIn("ingredient2", listOf("Toast", "Blueberries", "Banana", "Salmon", "Egg", "Chili sauce", "Sugar", "Fresh scallions"))
+            .whereIn("ingredient2", tempArray.toList())
             .get()
     }
 
-    fun getIngredientThreeRecipes(): Task<QuerySnapshot>{
+    fun getIngredientThreeRecipes(tempArray: List<String?>): Task<QuerySnapshot>{
         return firebaseFirestore
             .collection("recipes")
-            .whereIn("ingredient3", listOf("Toast", "Blueberries", "Banana", "Salmon", "Egg", "Chili sauce", "Sugar", "Fresh scallions"))
+            .whereIn("ingredient3", tempArray.toList())
+            .get()
+    }
+
+    fun getPantryItems(): Task<QuerySnapshot>{
+        return firebaseFirestore
+            .collection("pantries")
+            .limit(10)
             .get()
     }
 }

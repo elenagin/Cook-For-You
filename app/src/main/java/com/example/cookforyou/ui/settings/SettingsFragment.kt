@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.cookforyou.R
 
 
 /**
  * author: Elena Ginebra Z.
  * date: 10 Nov 2020
- * description: SettingsFragment fragment from Navigation bar
+ * description: SettingsFragment fragment from Navigation bar, will contain user settings
  */
 class SettingsFragment : Fragment() {
 

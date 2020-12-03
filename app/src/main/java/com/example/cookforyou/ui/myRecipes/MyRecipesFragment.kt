@@ -5,9 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookforyou.R
@@ -25,8 +23,6 @@ class MyRecipesFragment : Fragment() {
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
     private var recipesList: List<MyRecipesItem> = ArrayList()
     private var adapter: MyRecipesAdapter = MyRecipesAdapter(recipesList)
-    private lateinit var card: CardView
-    private lateinit var root: View
 
     override fun onCreateView(
         inflater: LayoutInflater,

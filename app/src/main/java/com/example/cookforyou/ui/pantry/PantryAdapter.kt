@@ -50,25 +50,7 @@ class PantryAdapter(var pantryList: MutableList<PantryItem>) :
     /**
      * author: Elena Ginebra Z.
      * date: 10 Nov 2020
-     * description: Get document ID from FirebaseRepo
-     */
-    /*private fun getDocumentID(pantryItem: PantryItem): String {
-        val firebaseRepo = FirebaseRepo()
-        firebaseRepo.getPantryItem().addOnCompleteListener {
-            if (it.isSuccessful) {
-                pantryList = it.result!!.toObjects(PantryItem::class.java)
-
-                return@addOnCompleteListener
-            } else {
-                Log.d("PantryAdapter", "Error")
-            }
-        }
-    }*/
-
-    /**
-     * author: Elena Ginebra Z.
-     * date: 10 Nov 2020
-     * description: load Data from FirebaseRepo
+     * description: removeFromDatabase deletes Pantry Items from FirebaseRepo
      */
     private fun removeFromDatabase(pantryItem: PantryItem) {
         val firebaseRepo = FirebaseRepo()

@@ -12,8 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.cookforyou.R
-import com.example.cookforyou.ui.discover.DiscoverItem
-import com.example.cookforyou.ui.recipe.Recipe
 
 
 /**
@@ -84,12 +82,12 @@ class HomeFragment : Fragment() {
     /**
      * author: Elena Ginebra Z.
      * date: 10 Nov 2020
-     * description: load Data from FirebaseRepo
+     * description: getRandomName Data from FirebaseRepo
      */
     private fun getRandomName(rand: Int) {
-        firebaseRepo.getRandomRecipeName(rand).addOnCompleteListener {
-            if (it.isSuccessful) {
-                recipe = it.result!!.toObjects(RecipeItem::class.java)
+        firebaseRepo.getRandomRecipeName(rand).addOnCompleteListener { r1 ->
+            if (r1.isSuccessful) {
+                recipe = r1.result!!.toObjects(RecipeItem::class.java)
                 name = recipe.find { it.id == rand }?.name.toString()
                 val bundle = bundleOf("name" to name)
                 findNavController().navigate(R.id.recipeFragment, bundle)

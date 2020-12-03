@@ -17,7 +17,7 @@ import com.example.cookforyou.R
 /**
  * author: Elena Ginebra Z.
  * date: 10 Nov 2020
- * description: SettingsFragment fragment from Navigation bar
+ * description: AddPantryItemFragment fragment from Navigation bar
  */
 class AddPantryItemFragment : Fragment() {
     private lateinit var root: View
@@ -28,7 +28,6 @@ class AddPantryItemFragment : Fragment() {
     private lateinit var unit: String
     private var amount: Int = 0
     private val firebaseRepo: FirebaseRepo = FirebaseRepo()
-    //private lateinit var addPantryItemViewModel: AddPantryItemViewModel
 
 
     override fun onCreateView(
@@ -36,16 +35,14 @@ class AddPantryItemFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //addPantryItemViewModel =
-        //    ViewModelProvider(this).get(AddPantryItemViewModel::class.java)
 
         root = inflater.inflate(R.layout.add_pantry_item, container, false)
         val addButton = root.findViewById<Button>(R.id.button)
-        itemEditText = root.findViewById<EditText>(R.id.itemInput)
+        itemEditText = root.findViewById(R.id.itemInput)
         item = itemEditText.text.toString()
-        amountEditText = root.findViewById<EditText>(R.id.amountInput)
+        amountEditText = root.findViewById(R.id.amountInput)
         amount = amountEditText.text.toString().toInt()
-        unitEditText = root.findViewById<EditText>(R.id.unitInput)
+        unitEditText = root.findViewById(R.id.unitInput)
         unit = unitEditText.text.toString()
 
 

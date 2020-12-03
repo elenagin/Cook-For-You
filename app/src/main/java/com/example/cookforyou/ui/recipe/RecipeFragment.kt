@@ -66,6 +66,11 @@ class RecipeFragment : Fragment() {
         return root
     }
 
+    /**
+     * author: Elena Ginebra Z.
+     * date: 30 Nov 2020
+     * description: DownloadImageFromInternet downloads image from url String parameter and shows on screen
+     */
     @SuppressLint("StaticFieldLeak")
     private inner class DownloadImageFromInternet(var imageView: ImageView) :
         AsyncTask<String, Void, Bitmap?>() {
@@ -95,10 +100,10 @@ class RecipeFragment : Fragment() {
     /**
      * author: Elena Ginebra Z.
      * date: 10 Nov 2020
-     * description: load Data from FirebaseRepo
+     * description: getCurrentRecipeData Data from FirebaseRepo
      */
     private fun getCurrentRecipeData(Name: String) {
-        firebaseRepo.getCurrentRecipe(Name).addOnCompleteListener {
+        firebaseRepo.getCurrentRecipe(Name).addOnCompleteListener { 
             if (it.isSuccessful) {
                 val recipe = it.result!!.toObjects(Recipe::class.java)
                 Log.d(TAG, recipe.toString())

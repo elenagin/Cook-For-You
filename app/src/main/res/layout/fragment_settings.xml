@@ -7,7 +7,6 @@
     tools:context=".ui.settings.SettingsFragment">
 
     <ImageView
-        android:id="@+id/imageView2"
         android:layout_width="331dp"
         android:layout_height="459dp"
         android:src="@drawable/cook_for_you_logo_no_background"
